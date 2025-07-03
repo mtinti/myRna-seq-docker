@@ -23,6 +23,7 @@ RUN micromamba install -y -n base -c conda-forge -c bioconda \
     fastq-screen \
     kraken \
     qualimap \
+    minimap2 \
     snakemake && \
     micromamba clean --all --yes
 
