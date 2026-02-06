@@ -27,6 +27,14 @@ RUN micromamba install -y -n base -c conda-forge -c bioconda \
     snakemake && \
     micromamba clean --all --yes
 
+# Install additional packages required by new pipeline steps
+RUN micromamba install -y -n base -c conda-forge -c bioconda \
+    gffread \
+    wget \
+    pandas \
+    numpy && \
+    micromamba clean --all --yes
+
 # Create a symlink directory structure to ensure tools are in standard PATH
 RUN mkdir -p /usr/local/bin && \
     ln -s /opt/conda/bin/* /usr/local/bin/
