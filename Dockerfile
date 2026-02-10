@@ -35,13 +35,19 @@ RUN micromamba install -y -n base -c conda-forge -c bioconda \
     numpy && \
     micromamba clean --all --yes
 
+# Install Python bioinformatics libraries in a dedicated layer
+RUN micromamba install -y -n base -c conda-forge -c bioconda \
+    pysam \
+    biopython && \
+    micromamba clean --all --yes
+
 # Create a symlink directory structure to ensure tools are in standard PATH
 RUN mkdir -p /usr/local/bin && \
     ln -s /opt/conda/bin/* /usr/local/bin/
 
 # Add labels for documentation
 LABEL description="RNA-seq analysis container with bioinformatics tools"
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="michele.tinti@gmail.com"
 LABEL tools="bowtie2, samtools, fastp, fastqc, snakemake and more"
 LABEL usage="Designed for use with Snakemake and Singularity"
 
