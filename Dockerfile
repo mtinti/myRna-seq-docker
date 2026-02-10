@@ -47,7 +47,7 @@ RUN mkdir -p /usr/local/bin && \
 
 # Add labels for documentation
 LABEL description="RNA-seq analysis container with bioinformatics tools"
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="michele.tinti@gmail.com"
 LABEL tools="bowtie2, samtools, fastp, fastqc, snakemake and more"
 LABEL usage="Designed for use with Snakemake and Singularity"
 
