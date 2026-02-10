@@ -17,6 +17,8 @@ The container includes the following bioinformatics utilities:
 - **Qualimap**: Quality control of alignment sequencing data
 - **featureCounts**: Read count quantification for RNA-seq
 - **MultiQC**: Aggregate analysis reports across many samples
+- **pysam**: Python interface for reading, manipulating, and writing SAM/BAM/CRAM files
+- **Biopython**: Python toolkit for computational molecular biology and bioinformatics
 
 ## Usage
 
@@ -58,3 +60,30 @@ git clone https://github.com/mtinti/rnaseq_docker.git
 cd rnaseq_docker
 docker build -t mtinti/rna_seq:latest .
 ```
+
+## Maintainer workflow: build and push a new Docker Hub version
+
+Use these steps when publishing a new image version.
+
+```bash
+# 1) Choose a version tag
+export VERSION=v1.0.0
+
+# 2) Build the image with a version tag and latest
+docker build -t mtinti/rna_seq:${VERSION} -t mtinti/rna_seq:latest .
+
+# 3) Log in to Docker Hub
+docker login
+
+# 4) Push both tags
+docker push mtinti/rna_seq:${VERSION}
+docker push mtinti/rna_seq:latest
+
+# 5) (Optional) Verify tags locally
+docker images | grep mtinti/rna_seq
+```
+
+Suggested release practice:
+- Use semantic version tags (`vMAJOR.MINOR.PATCH`) for traceability.
+- Push `latest` only after validating the tagged image.
+- Keep this README and Docker Hub description aligned.

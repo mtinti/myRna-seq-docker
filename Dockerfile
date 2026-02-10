@@ -35,6 +35,12 @@ RUN micromamba install -y -n base -c conda-forge -c bioconda \
     numpy && \
     micromamba clean --all --yes
 
+# Install Python bioinformatics libraries in a dedicated layer
+RUN micromamba install -y -n base -c conda-forge -c bioconda \
+    pysam \
+    biopython && \
+    micromamba clean --all --yes
+
 # Create a symlink directory structure to ensure tools are in standard PATH
 RUN mkdir -p /usr/local/bin && \
     ln -s /opt/conda/bin/* /usr/local/bin/
